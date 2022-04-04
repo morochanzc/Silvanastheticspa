@@ -1,0 +1,15 @@
+descanso_list:
+    path: /list
+    controller: App\Controller\DescansoController::list
+
+descanso_new:
+    path: /new
+    controller: App\Controller\DescansoController::new
+
+descanso_edit:
+    path: /edit/{id}
+    controller: App\Controller\DescansoController::edit
+
+descanso_delete:
+    path: /delete/{id}
+    controller: App\Controller\DescansoController::delete

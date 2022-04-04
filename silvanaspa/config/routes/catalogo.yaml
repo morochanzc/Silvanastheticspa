@@ -1,0 +1,15 @@
+catalogo_list:
+    path: /list
+    controller: App\Controller\CatalogoController::list
+
+catalogo_new:
+    path: /new
+    controller: App\Controller\CatalogoController::new
+
+catalogo_edit:
+    path: /edit/{id}
+    controller: App\Controller\CatalogoController::edit
+
+catalogo_delete:
+    path: /delete/{id}
+    controller: App\Controller\CatalogoController::delete

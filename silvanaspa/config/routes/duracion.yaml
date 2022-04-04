@@ -1,0 +1,19 @@
+duracion_list:
+    path: /list
+    controller: App\Controller\DuracionController::list
+
+duracion_new:
+    path: /new
+    controller: App\Controller\DuracionController::new
+
+duracion_edit:
+    path: /edit/{id}
+    controller: App\Controller\DuracionController::edit
+
+duracion_delete:
+    path: /delete/{id}
+    controller: App\Controller\DuracionController::delete
+
+duracion_getDuraciones:
+    path: /getDuraciones
+    controller: App\Controller\DuracionController::getDuraciones

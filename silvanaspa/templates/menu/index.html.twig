@@ -1,0 +1,20 @@
+<!-- Nav Item - Pages Collapse Menu -->
+{% for item in itemsMenu | sort %}
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="{{ item.link }}" data-toggle="collapse" data-target="#collapse{{ item.title }}" aria-expanded="true" aria-controls="collapse{{ item.title }}">
+      <i class="{{ item.icon }}"></i>
+      <span>{{ item.title }}</span>
+    </a>
+
+    <div id="collapse{{ item.title }}" class="collapse" aria-labelledby="heading{{ item.title }}" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded ">
+        {% for subitem in item.submenus %}
+          <a class="collapse-item" href="{{ subitem.link }}"><i class="{{ subitem.icon }}"></i><span> {{ subitem.title }}</span></a>
+        {% endfor %}
+      </div>
+    </div>
+  </li>
+{% endfor %}
+
+<!-- Divider -->
+<hr class="sidebar-divider">

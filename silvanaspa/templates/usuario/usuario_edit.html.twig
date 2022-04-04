@@ -1,0 +1,75 @@
+{% extends "base.html.twig" %}
+{% block body %}
+  <div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Edición de usuarios</h1>
+    {{form_start(form)}}
+      <div class="row">
+        <div class="col-xl-6 col-lg-5">
+          <div class="card shadow mb-4">
+            {% for mensaje in app.session.flashbag().get('mensaje') %}
+              <div class="alert alert-success">
+                {{ mensaje }}
+              </div>
+            {% endfor %}
+            <div class="clearfix"></div>
+            <div class="card-body">
+              {{ form_errors(form) }}
+              <div>
+                  {{ form_label(form.tipoidentificacion) }}
+                  {{ form_widget(form.tipoidentificacion) }}
+                  {{ form_label(form.identificacion) }}
+                  {{ form_widget(form.identificacion) }}
+                  {{ form_label(form.nombre) }}
+                  {{ form_widget(form.nombre) }}
+                  {{ form_label(form.apellido) }}
+                  {{ form_widget(form.apellido) }}   
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-5">
+          <div class="card shadow mb-4">
+            <div class="card-body">
+              <div>
+                {{ form_label(form.direccion) }}
+                {{ form_widget(form.direccion) }}
+                {{ form_label(form.telefono) }}
+                {{ form_widget(form.telefono) }}
+                {{ form_label(form.celular) }}
+                {{ form_widget(form.celular) }}
+                {{ form_label(form.correo) }}
+                {{ form_widget(form.correo) }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-5">
+          <div class="card shadow mb-4">
+              <div class="card-body">
+                <div>
+                  {{ form_label(form.rol) }}
+                  {{ form_widget(form.rol) }}
+                  {{ form_label(form.login) }}
+                  {{ form_widget(form.login) }}
+                  {{ form_widget(form) }}
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+          <input class="btn btn-success" type="submit" value="Guardar" />
+          
+          <a href="{{path("usuario_list")}}" class="btn btn-secondary btn-icon-split">
+            <span class="icon text-white-50">
+              <i class="fas fa-arrow-left"></i>
+            </span>
+            <span class="text">Cancelar</span>
+          </a>
+      </div>
+    {{form_end(form)}}
+  </div>
+{% endblock body %}

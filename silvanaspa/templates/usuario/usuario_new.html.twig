@@ -1,0 +1,81 @@
+{% extends "base.html.twig" %}
+{% block body %}
+  <div class="container-fluid ">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Registro de usuarios</h1>
+    {% for mensaje in app.session.flashbag().get('mensaje') %}
+      {% for tipomensaje in app.session.flashbag().get('tipomensaje') %}
+        <div class="alert alert-{{ tipomensaje }}">
+          {{ mensaje }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endfor %}
+    {% endfor %}
+    <!-- BEGIN FORM-->
+    <form action="{{ path('usuario_new') }}" class="form-horizontal" method="post">  
+      <div class="row">
+        <div class="col-xl-6 col-lg-5">
+          <div class="card shadow mb-4">
+            <div class="clearfix"></div>
+            <div class="card-body">
+              {{ form_errors(form) }}
+              <div>
+                  {{ form_label(form.tipoidentificacion) }}
+                  {{ form_widget(form.tipoidentificacion) }}
+                  {{ form_label(form.identificacion) }}
+                  {{ form_widget(form.identificacion) }}
+                  {{ form_label(form.nombre) }}
+                  {{ form_widget(form.nombre) }}
+                  {{ form_label(form.apellido) }}
+                  {{ form_widget(form.apellido) }}   
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-5">
+          <div class="card shadow mb-4">
+            <div class="card-body">
+              <div>
+                {{ form_label(form.direccion) }}
+                {{ form_widget(form.direccion) }}
+                {{ form_label(form.telefono) }}
+                {{ form_widget(form.telefono) }}
+                {{ form_label(form.celular) }}
+                {{ form_widget(form.celular) }}
+                {{ form_label(form.correo) }}
+                {{ form_widget(form.correo) }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-5">
+          <div class="card shadow mb-4">
+              <div class="card-body">
+                <div>
+                  {{ form_label(form.rol) }}
+                  {{ form_widget(form.rol) }}
+                  {{ form_label(form.login) }}
+                  {{ form_widget(form.login) }}
+                  {{ form_widget(form) }}
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+          <input class="btn btn-success" type="submit" value="Registrar" />
+          <a href="{{path("usuario_list")}}" class="btn btn-secondary btn-icon-split">
+            <span class="icon text-white-50">
+              <i class="fas fa-arrow-left"></i>
+            </span>
+            <span class="text">Cancelar</span>
+          </a>
+      </div>
+    </form>
+    <!-- END FORM-->
+  </div>
+{% endblock body %}

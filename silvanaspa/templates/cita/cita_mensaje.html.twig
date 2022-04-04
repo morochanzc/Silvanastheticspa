@@ -1,0 +1,7 @@
+<div class="alert alert-{{ clase }}"><h4>{{ mensaje }}</h4>
+    {%if url != 'null' %}
+        <a href={{ path( url ) }} class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+            <i class="fas fa-plus fa-sm text-white-50"></i> {{ boton }}
+        </a>
+    {% endif %}
+</div>

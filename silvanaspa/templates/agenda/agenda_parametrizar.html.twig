@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+<style type="text/css">
+  a:link
+  {
+    text-decoration:none;
+  }
+</style>
+{% endblock %}
+{% block body %}
+<div class="container-fluid">
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Agenda: {{ agenda.nombre }}</h1>
+  </div>
+  {% for mensaje in app.session.flashbag().get('mensaje') %}
+    {% for tipomensaje in app.session.flashbag().get('tipomensaje') %}
+      <div class="alert alert-{{ tipomensaje }}">
+        {{ mensaje }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+  {% endfor %}
+  <!-- ----------------- Descansos agenda ------------- -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Descansos de agenda</h6>
+    </div>
+    <div class="card-body">
+      {% if descansos_agenda %}
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Inicio</th>
+              <th>Duración</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for descanso_agenda in descansos_agenda %}
+              <tr>
+                <td>{{ descanso_agenda.descanso.nombre }}</td>
+                <td>{{ descanso_agenda.horainicio | date('H:i') }}</td>
+                <td>{{ descanso_agenda.descanso.duracion | date('H:i') }}</td>
+                <td>
+                  <a href="{{ path("agenda_deleteDescanso", {"descansoId":descanso_agenda.descanso.id, "agendaId":agenda.id} ) }}" class="btn btn-danger btn-sm">
+                    <i class="fas fa-times"></i>
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <a href="#" data-toggle="modal" data-target="#descansoModal" class="btn btn-primary btn-icon-split float-right">
+          <span class="icon text-white-50">
+            <i class="fas fa-pencil-alt"></i>
+          </span>
+          <span class="text">Asignar descanso</span>
+        </a>
+      {% else %}
+        <div class="alert alert-info }}">
+          La agenda no tiene asignados descansos.
+        </div>
+        <a href="#" data-toggle="modal" data-target="#descansoModal" class="btn btn-primary btn-icon-split float-right">
+          <span class="icon text-white-50">
+            <i class="fas fa-pencil-alt"></i>
+          </span>
+          <span class="text">Asignar descanso</span>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+  <!-- Modal Descansos Agenda -->
+  <div class="modal fade" id="descansoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Seleccione los descansos.</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div id="divmensaje" class="modal-body">
+          {{ render(controller('App\\Controller\\AgendaController::getDescansos', {'id':agenda.id} ))}}
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- FIN Modal Descansos Agenda -->
+  <!-- -----------------FIN Descansos Agenda ------------- -->
+</div>
+{% endblock %}

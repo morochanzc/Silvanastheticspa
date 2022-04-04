@@ -1,0 +1,17 @@
+.footer-section {
+	color: #fff;
+	margin-top: 40px;
+	bottom:0 !important;
+	position:fixed;
+	width: 100%;
+	z-index: 106;
+}
+
+.footer-body-section {
+	background-color: #224abe;
+	height: 30px;
+}
+
+.footer-body-section > div {
+	padding:  3px;
+}

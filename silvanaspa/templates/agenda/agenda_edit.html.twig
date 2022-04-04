@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+{% block body %}
+  <div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Edición de agendas</h1>
+    {{form_start(form)}}
+      <div class="row">
+        <div class="col-xl-6 col-lg-5">
+          <div class="card shadow mb-4">
+            {% for mensaje in app.session.flashbag().get('mensaje') %}
+              <div class="alert alert-success">
+                {{ mensaje }}
+              </div>
+            {% endfor %}
+            <div class="clearfix"></div>
+            <div class="card-body">
+              {{ form_errors(form) }}
+              <div>
+                  {{ form_label(form.nombre) }}
+                  {{ form_widget(form.nombre) }}
+                  {{ form_label(form.descripcion) }}
+                  {{ form_widget(form.descripcion) }}
+                  {{ form_widget(form) }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+          <input class="btn btn-success" type="submit" value="Guardar" />
+          
+          <a href="{{path("agenda_list")}}" class="btn btn-secondary btn-icon-split">
+            <span class="icon text-white-50">
+              <i class="fas fa-arrow-left"></i>
+            </span>
+            <span class="text">Cancelar</span>
+          </a>
+      </div>
+    {{form_end(form)}}
+  </div>
+{% endblock body %}

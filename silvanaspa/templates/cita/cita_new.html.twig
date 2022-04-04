@@ -1,0 +1,88 @@
+{% extends "base.html.twig" %}
+{% block body %}
+  <div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Registro de citas</h1>
+    {% for mensaje in app.session.flashbag().get('mensaje') %}
+      {% for tipomensaje in app.session.flashbag().get('tipomensaje') %}
+        <div class="alert alert-{{ tipomensaje }}">
+          {{ mensaje }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endfor %}
+    {% endfor %}
+    <!-- BEGIN FORM-->
+    <form action="{{ path('cita_new') }}" class="form-horizontal" method="post">  
+      <div class="row">
+        <div class="col-xl-12 col-lg-12">
+          <div class="card shadow mb-4">
+            <div class="clearfix"></div>
+            <div class="card-body">
+                {{ form_errors(form) }}
+                  <div class="input-group">
+                      <input type="text" id="usuarioId" name="usuarioId" class="form-control" placeholder="Identificación" aria-describedby="basic-addon2">
+                      <a href="#" class="btn btn-light btn-icon-split" onClick="buscarPersona();">
+                        <span class="icon text-white-50">
+                          <i class="fas fa-search fa-lg"></i>
+                        </span>
+                        <span class="text">Buscar</span>
+                      </a>
+                  </div>
+                <div class="clearfix"></div>
+                <br>
+                <div id="persona" name="persona">
+                    {# acá se renderiza la info el persona #}
+                </div>
+                <div>
+                  {{ form_label(form.duracion) }}
+                  {{ form_widget(form.duracion) }}
+                  {{ form_widget(form) }}   
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+          <input class="btn btn-success" type="submit" value="Registrar" />
+          <a href="{{path("cita_list", {"agendaId":agendaId})}}" class="btn btn-secondary btn-icon-split">
+            <span class="icon text-white-50">
+              <i class="fas fa-arrow-left"></i>
+            </span>
+            <span class="text">Cancelar</span>
+          </a>
+      </div>
+    </form>
+    <!-- END FORM-->
+  </div>
+{% endblock body %}
+{% block javascript %}
+<script>
+function buscarPersona(){
+    var id = $("#usuarioId").val();
+    var ruta = "{{ path('usuario_getUsuario') }}";
+    var parametros = {
+            "id" : id
+    };
+    console.log(parametros);
+    $.ajax({
+        data:  parametros,
+        url:   ruta,
+        type:  'post',
+        beforeSend:function() {
+            //$('#persona').html('<img style="display: block; margin: auto;" src="{{ asset('images/ajax_porcentaje.gif') }}" />');
+        },
+        success:function(response) {
+            //console.log(response);
+            if(response != null){
+                    $('#persona').html(response);
+            }else{
+                    $('#mensaje').html(response);
+            }
+        }
+    });// end ajax            
+}
+</script>
+{% endblock javascript %}

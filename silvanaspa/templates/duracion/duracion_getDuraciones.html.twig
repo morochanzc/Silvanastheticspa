@@ -1,0 +1,9 @@
+<div class="col-auto">
+    <label for="duracion" class="required">Tipo de cita</label>
+    <select id="duracion" class="form-control">
+        <option value="" selected="selected">Seleccione...</option>
+        {% for duracion in duraciones %}
+            <option value="{{ duracion.id }}">{{ duracion.nombre }}</option>
+        {% endfor %}
+    </select>
+</div><br>

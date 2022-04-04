@@ -1,0 +1,19 @@
+usuario_list:
+    path: /list
+    controller: App\Controller\UsuarioController::list
+
+usuario_new:
+    path: /new
+    controller: App\Controller\UsuarioController::new
+
+usuario_edit:
+    path: /edit/{id}
+    controller: App\Controller\UsuarioController::edit
+
+usuario_delete:
+    path: /delete/{id}
+    controller: App\Controller\UsuarioController::delete
+
+usuario_getUsuario:
+    path: /getUsuario/
+    controller: App\Controller\UsuarioController::getUsuario

@@ -1,0 +1,31 @@
+index:
+    path: /
+    controller: App\Controller\SecurityController::index
+
+app_panel:
+    resource: "../config/routes/panel.yaml"
+    prefix: /panel
+
+app_usuario:
+    resource: "../config/routes/usuario.yaml"
+    prefix: /usuario
+
+app_agenda:
+    resource: "../config/routes/agenda.yaml"
+    prefix: /agenda
+
+app_descanso:
+    resource: "../config/routes/descanso.yaml"
+    prefix: /descanso
+
+app_horario:
+    resource: "../config/routes/horario.yaml"
+    prefix: /horario
+
+app_duracion:
+    resource: "../config/routes/duracion.yaml"
+    prefix: /duracion
+
+app_cita:
+    resource: "../config/routes/cita.yaml"
+    prefix: /cita

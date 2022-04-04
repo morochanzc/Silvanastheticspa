@@ -1,0 +1,55 @@
+<!-- newCita Modal-->
+<div class="modal fade" id="newCitaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel">Cita</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div id="divmensaje" class="modal-body">
+        <div class="col-auto">
+          <label for="horaCita">Hora</label>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                  <i class="fas fa-clock"></i>
+              </div>
+            </div>
+            <input type="text" class="form-control" id="horaCita" placeholder="Hora">
+          </div>
+        </div>
+        {{ render(path('duracion_getDuraciones')) }}
+        <div class="form-inline">
+          <div class="form-group mx-sm-3 mb-2 personas">
+            <label for="personaId" class="sr-only">Identificación</label>
+            <input type="text" class="form-control" id="personaId" placeholder="Identificación">
+          </div>
+          
+          <a class="btn btn-primary form-group mb-2 personas" href="javascript:;" onclick="buscarPersona()" >
+            <i class="fas fa-search"></i>
+            <span>Buscar</span>
+          </a>
+        </div>
+      
+        <div id="persona" name="persona">
+            {# acá se renderiza la información de la persona #}
+        </div>
+        <div id="personasCita">
+            {# acá se renderiza las personas asociadas a la cita #}
+        </div>
+        <div id="mensajeNewCita">
+            {# acá se renderiza el mensaje #}
+        </div>
+        <input type="hidden" id="fechaCita" name="fechaCita" value="" />
+        <input type="hidden" id="agenda" name="agenda" value="{{ agendaId }}" />
+      </div>
+      <div class="modal-footer">
+		    <input type="button" class="btn btn-success" href="javascript:;" onclick="addCita()" value="Registrar"/>
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end newCita Modal-->

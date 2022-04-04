@@ -1,0 +1,51 @@
+
+    <div class="container-fluid">
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <div class="row-fluid">
+                    {% for mensaje in app.session.flashbag().get('mensaje') %}
+                        <div class="alert alert-success">{{ mensaje }}</div>
+                    {% endfor %}
+                    <div class="clearfix"></div>
+                    <div class="table-responsive">          
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Identificación</th>
+                                    <th>Celular</th>
+                                    {#<th>Direccion</th>
+                                    <th>Teléfono</th>
+                                    <th>Celular</th>
+                                    <th>Correo</th>
+                                    <th>Estado</th>
+                                    <th>Acción</th>#}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <tr>
+                                        <td>{{ usuario.nombre }} {{ usuario.apellido }}</td>
+                                        <td>{{ usuario.identificacion }}</td>
+                                        <td>{{ usuario.celular }}</td>
+                                        {#<td>{{ usuario.direccion }}</td>
+                                        <td>{{ usuario.telefono }}</td>
+                                        <td>{{ usuario.celular }}</td>
+                                        <td>{{ usuario.correo }}</td>
+                                        {% if usuario.activo == 1 %}
+                                            <td><i class="fa fa-check fa-lg" style="color: green;"></i></td>
+                                        {% else %}
+                                            <td><i class="fa fa-close fa-lg" style="color: red;"></i></td>
+                                        {% endif %}
+                                        <td>
+                                            <a class="btn btn-success btn-sm" href="javascript:;" onclick="addPersona()" >
+                                                <i class="fas fa-check"></i>
+                                            </a>
+                                        </td>#}
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

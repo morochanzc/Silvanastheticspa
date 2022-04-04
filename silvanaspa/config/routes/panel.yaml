@@ -1,0 +1,15 @@
+panel:
+    path: /panel
+    controller: App\Controller\PanelController::panel
+
+panel_admin:
+    path: /admin
+    controller: App\Controller\PanelController::admin
+
+panel_director:
+    path: /director
+    controller: App\Controller\PanelController::director
+
+panel_usuario:
+    path: /usuario
+    controller: App\Controller\PanelController::usuario

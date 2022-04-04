@@ -1,0 +1,19 @@
+cita_list:
+    path: /list
+    controller: App\Controller\CitaController::list
+
+cita_new:
+    path: /new
+    controller: App\Controller\CitaController::new
+
+cita_edit:
+    path: /edit/{id}
+    controller: App\Controller\CitaController::edit
+
+cita_delete:
+    path: /delete/{id}
+    controller: App\Controller\CitaController::delete
+
+cita_panel:
+    path: /panel
+    controller: App\Controller\CitaController::panel

@@ -1,0 +1,15 @@
+horario_list:
+    path: /list
+    controller: App\Controller\HorarioController::list
+
+horario_new:
+    path: /new
+    controller: App\Controller\HorarioController::new
+
+horario_edit:
+    path: /edit/{id}
+    controller: App\Controller\HorarioController::edit
+
+horario_delete:
+    path: /delete/{id}
+    controller: App\Controller\HorarioController::delete

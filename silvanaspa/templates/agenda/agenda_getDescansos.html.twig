@@ -1,0 +1,90 @@
+<div class="card-body">
+  <div class="table-responsive">
+    {% if descansos %}
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Duración</th>
+            <th>Hora de inicio</th>
+            <th>Asignar</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for descanso in descansos %}
+            <tr>
+              <td>{{ descanso.nombre }}</td>
+              <td>{{ descanso.duracion | date('H:i') }}</td>
+              <td>
+                <div class="form-group">
+                  <div class="input-append bootstrap-timepicker-component">
+                    <input type="text" id="HoraInicio{{ descanso.id }}" name="HoraInicio{{ descanso.id }}" class="timepicker-default input-small form-control" />     
+                    <span class="add-on"></span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                
+                <a href="javascript:;" onclick="asignarDescanso({{ descanso.id }}, {{ agendaId }}, 'HoraInicio{{ descanso.id }}')" class="btn btn-info btn-sm">
+                  <i class="fas fa-check"></i>
+                </a>
+                {#
+                <a href="{{ path("agenda_setDescansos", {"descansoId":descanso.id, "agendaId":agendaId, "HoraInicio":'HoraInicio{{ descanso.id }}' }) }}" class="btn btn-info btn-sm"></a>
+                  <i class="fas fa-check"></i>
+                </a>
+                #}
+                {#
+                <a id="agregar_descanso" href="#" class="btn btn-info btn-sm">
+                  <i class="fas fa-check"></i>
+                </a>
+                #}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <div class="alert alert-info }}">
+        No hay descansos disponibles para asignar.
+      </div>
+      <a href="{{ path('descanso_new') }}" class="btn btn-success btn-sm">
+        Crear descanso
+      </a>
+    {% endif %}
+  </div>
+  <script>
+    function asignarDescanso(descansoId, agendaId, hora){                                         
+      var ruta = '{{ path('agenda_setDescansos') }}';
+      var HoraInicio = $('#'+hora).val();
+      //console.log('DescansoId='+descansoId);
+      //console.log('AgendaId='+agendaId);
+      HoraInicio = HoraInicio.toString();
+      console.log(HoraInicio);
+      //console.log(ruta);
+      var parametros = {
+        "descansoId" : descansoId,
+        "agendaId" : agendaId,
+        "HoraInicio" : HoraInicio              
+      };
+
+      $.ajax({
+        data:  parametros,
+        url:   ruta,
+        type:  'post',
+        beforeSend: function () {                                         
+          //$('#delete_inactivar_process').html('<img src="{{ asset('img/ajax-loaders/ajax_edit_table.gif') }}" />');
+        },
+        success:  function (response) {
+          console.log(response);
+          if(response === '1'){
+            window.location.href = '{{ path('agenda_parametrizar', {'id':agendaId}) }}';
+          }else{
+            console.log(response);
+            alert("No se pudo realizar la asignación");
+          }
+        }
+      });// end ajax
+    }
+  </script>
+</div>
+

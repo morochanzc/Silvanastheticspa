@@ -1,0 +1,39 @@
+agenda_list:
+    path: /list
+    controller: App\Controller\AgendaController::list
+
+agenda_new:
+    path: /new
+    controller: App\Controller\AgendaController::new
+
+agenda_edit:
+    path: /edit/{id}
+    controller: App\Controller\AgendaController::edit
+
+agenda_delete:
+    path: /delete/{id}
+    controller: App\Controller\AgendaController::delete
+
+agenda_panel:
+    path: /panel
+    controller: App\Controller\AgendaController::panel
+
+agenda_parametrizar:
+    path: /parametrizar/{id}
+    controller: App\Controller\AgendaController::parametrizar
+
+agenda_deleteDescanso:
+    path: /deleteDescanso
+    controller: App\Controller\AgendaController::deleteDescanso
+
+agenda_getDescansos:
+    path: /getDescansos
+    controller: App\Controller\AgendaController::getDescansos
+
+agenda_setDescansos:
+    path: /setDescansos
+    controller: App\Controller\AgendaController::setDescansos
+
+agenda_deleteDescansos:
+    path: /deleteDescansos
+    controller: App\Controller\AgendaController::deleteDescansos
